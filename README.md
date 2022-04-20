@@ -1,22 +1,3 @@
----
-page_type: sample
-languages:
-- csharp
-products:
-- azure-iot
-- azure-iot-edge
-- azure-iot-hub
-- azure-functions
-- azure-event-hubs
-- azure-data-lake
-- azure-container-instances
-- power-virtual-agents
-- power-apps
-- power-automate
-- microsoft-teams
-- vs-code
----
-
 # Tornado Watchdog Severe Weather Alerting System
 
 This repo introduces a sample scenario based on the [Azure Iot Edge Watchdog Sample](https://github.com/Azure-Samples/iot-edge-watchdog) from [these open-source contributors](https://github.com/Azure-Samples/iot-edge-watchdog/graphs/contributors). This architecture demonstrates an event-driven architecture beginning with Azure IoT edge devices connected to Azure IoT Hub that trigger Azure Functions and end in a notification system in Power Platform/Microsoft Teams.
@@ -26,17 +7,6 @@ In this example, the IoT edge device(s) are local devices with sensors to detect
 ![Tornado Watchdog Diagram](https://user-images.githubusercontent.com/1610195/162876670-98bb928e-a761-4294-9ede-7ed86c0e4a1b.png)
 
 ## Contents
-
-| File/folder | Description |
-|-|-|
-| `Edge` | Contains Azure IoT Edge Watchdog module which sends Heartbeat message |
-| `Cloud` | Contains the Azure Function code which responds to Heartbeat message |
-| `SharedCode` | Contains Protobuf definition for Heartbeat message |
-| `.gitignore`      | Define what to ignore at commit time. |
-| `CONTRIBUTING.MD` | Guidelines for contributing to the Sample on Github |
-| `ISSUE_TEMPLATE.md`  | Template for submitting issues on GitHub |
-| `LICENSE`         | The license for the sample |
-| `README.md`       | This README file |
 
 This project has four parts:
 
@@ -52,9 +22,9 @@ send messages to the corresponding IoT Hub.
     - Power Automate Flow for capturing events from the IoT architecture in Azure
     - Virtual Agent for connecting to the tornado knowledge base and accepting event notifications
 
-## Quickstart
+## Get Started
 
-1. Language SDK
+1. Language SDKs
 
 - [.NET Core SDK (6.0)](https://www.microsoft.com/net/download)
 - [Node.js (LTS)](https://nodejs.org) - required for local development of the Azure
@@ -99,12 +69,11 @@ You will also need access to a Teams environment in the same Microsoft tenant fo
 
 5. Azure Functions Core Tools
 
- [Azure Functions Core Tools](https://github.com/Microsoft/vscode-azurefunctions/blob/master/README.md) is a version of the Azure Functions runtime for local development machine. It also provides commands to create functions, connect to Azure, and deploy Azure Function projects.  After verifying Node.js (LTS) is installed and in the path, install **[azure-functions-core-tools](https://www.npmjs.com/package/azure-functions-core-tools)** with
-    npm:
+ [Azure Functions Core Tools](https://github.com/Microsoft/vscode-azurefunctions/blob/master/README.md) is a version of the Azure Functions runtime for local development machine. It also provides commands to create functions, connect to Azure, and deploy Azure Function projects.  After verifying Node.js (LTS) is installed and in the path, install **[azure-functions-core-tools](https://www.npmjs.com/package/azure-functions-core-tools)** with npm:
 
-    ```bash
-        npm install -g azure-functions-core-tools
-    ```
+``` bash
+    npm install -g azure-functions-core-tools
+```
 
 ### Azure IoT Edge Module (Simulated Edge Device)
 
