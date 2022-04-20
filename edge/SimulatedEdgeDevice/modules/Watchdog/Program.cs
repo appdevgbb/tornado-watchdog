@@ -33,6 +33,14 @@ namespace HeartbeatModule
         static uint backoffExp = 1; // used for exponential backoff
         static string deviceId = Environment.GetEnvironmentVariable($"IOTEDGE_DEVICEID");
         static string moduleId = Environment.GetEnvironmentVariable($"IOTEDGE_MODULEID");
+        static string status = Environment.GetEnvironmentVariable($"STATUS");
+        static string category = Environment.GetEnvironmentVariable($"CATEGORY");
+        static string severity = Environment.GetEnvironmentVariable($"SEVERITY");
+        static string certainty = Environment.GetEnvironmentVariable($"CERTAINTY");
+        static string urgency = Environment.GetEnvironmentVariable($"URGENCY");
+        static string iotEvent = Environment.GetEnvironmentVariable($"EVENT");
+        static string headline = Environment.GetEnvironmentVariable($"HEADLINE");
+        static string instruction = Environment.GetEnvironmentVariable($"INSTRUCTION");
         static TimeSpan startWindow = GetTimeSpanEnvVar("START_WINDOW_IN_SECONDS", START_WINDOW_IN_SECONDS);
         static TimeSpan endWindow = GetTimeSpanEnvVar("END_WINDOW_IN_SECONDS", END_WINDOW_IN_SECONDS);
         static TimeSpan hartbeatFrequency = GetTimeSpanEnvVar("HEARTBEAT_FREQUENCY_IN_SECONDS", HEARTBEAT_FREQUENCY_IN_SECONDS);
@@ -132,10 +140,7 @@ namespace HeartbeatModule
             // Open a connection to the Edge runtime
             ModuleClient ioTHubModuleClient = await ModuleClient.CreateFromEnvironmentAsync(settings);
             await ioTHubModuleClient.OpenAsync();
-            Log.Information("IoT Hub Heartbeat module client on {deviceId} initialized", deviceId);
-
-            // Register callback to be called when a message is received by the module
-            await ioTHubModuleClient.SetMethodDefaultHandlerAsync(AckMessage, ioTHubModuleClient);
+            Log.Information("IoT Hub event module client on {deviceId} initialized", deviceId);
 
             return ioTHubModuleClient;
         }
@@ -157,15 +162,16 @@ namespace HeartbeatModule
                     Onset = DateTime.UtcNow.ToString(),
                     Expires = DateTime.UtcNow.AddHours(8).ToString(),
                     Ends = DateTime.UtcNow.AddHours(8).ToString(),
-                    Status = "Actual",
-                    Category = "Met",
-                    Severity = "Severe",
-                    Certainty = "Likely",
-                    Urgency = "Expected",
-                    Event = "Tornado Warning",
-                    Headline = "Wind Advisory issued by NWS",
-                    Instruction = "Use extra caution when driving, especially if operating a high\nprofile vehicle. Secure outdoor objects."
+                    Status = status,
+                    Category = category,
+                    Severity = severity,
+                    Certainty = certainty,
+                    Urgency = urgency,
+                    Event = iotEvent,
+                    Headline = headline,
+                    Instruction = instruction
                 };
+
                 var json = Google.Protobuf.JsonFormatter.Default.Format(msg);
                 Message sendMsg = new Message( Encoding.UTF8.GetBytes(json) );
                 sendMsg.Properties.Add("msgType", "alert");
@@ -176,40 +182,9 @@ namespace HeartbeatModule
             }
             catch(Exception e)
             {
-                Log.Error("Error Sending Heartbeat: {Error}", e);
+                Log.Error("Error Sending Event: {Error}", e);
                 Console.WriteLine(e.Message);
             }
-        }
-
-        /// <summary>
-        /// When the Azure function sends a DirectMethod to the module ACKing the
-        //  message the device sent, the device updates the msgId status to ACKed
-        /// </summary>
-        static Task<MethodResponse> AckMessage(MethodRequest message, object userContext)
-        {
-            int counterValue = Interlocked.Increment(ref counter);
-
-            var moduleClient = userContext as ModuleClient;
-            if (moduleClient == null)
-            {
-                throw new InvalidOperationException("UserContext doesn't contain expected values");
-            }
-
-            byte[] messageBytes = message.Data;
-            string messageString = Encoding.UTF8.GetString( messageBytes );
-
-            if (!string.IsNullOrEmpty(messageString))
-            {
-                var msg = JsonParser.Default.Parse<HeartbeatMessage>(messageString);
-                Log.Information("Heartbeat message {MsgId} on {deviceId} acknowledged.", msg.Id, deviceId);
-                if(HbStatus.ContainsKey(msg.Id)) HbStatus[msg.Id] = MessageStatus.Acked;
-            }
-            else
-            {
-                Log.Information("Heartbeat acknowledge message failed with no data received on {deviceID}", deviceId);
-            }
-
-            return Task.FromResult(new MethodResponse(200));
         }
 
         static Task OnDesiredPropertiesUpdate(TwinCollection desiredProperties, object userContext)
