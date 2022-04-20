@@ -1,0 +1,23 @@
+syntax = "proto3";
+package HeartbeatProto;
+
+message HeartbeatMessage {
+    string MsgType = 1;
+    string DeviceId = 2;
+    string ModuleId = 3;
+    int64 Id = 4;
+    int64 HeartbeatCreatedTicksUtc = 5;
+    string Sent = 6;
+    string Effective = 7;
+    string Onset = 8;
+    string Expires = 9;
+    string Ends = 10;
+    string Status = 11;
+    string Category = 12;
+    string Severity = 13;
+    string Certainty = 14;
+    string Urgency = 15;
+    string Event = 16;
+    string Headline = 17;
+    string Instruction = 18;
+}
