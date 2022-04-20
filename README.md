@@ -1,8 +1,8 @@
 # Tornado Watchdog Severe Weather Alerting System
 
-This repo introduces a sample scenario based on the [Azure Iot Edge Watchdog Sample](https://github.com/Azure-Samples/iot-edge-watchdog) from [these open-source contributors](https://github.com/Azure-Samples/iot-edge-watchdog/graphs/contributors). This architecture demonstrates an event-driven architecture beginning with Azure IoT edge devices connected to Azure IoT Hub that trigger Azure Functions and end in a notification system in Power Platform/Microsoft Teams.
+This project introduces a sample scenario based on the [Azure Iot Edge Watchdog Sample](https://github.com/Azure-Samples/iot-edge-watchdog) from [these open-source contributors](https://github.com/Azure-Samples/iot-edge-watchdog/graphs/contributors). In this example, the Iot Edge device(s) are equipped with sensors that can detect cyclone activity based on environmental factors. The devices send "watch" or "warning" messages in the case of severe weather conditions which are routed through a notification system in Microsoft Azure. These events may also trigger a workflow in a companion Power Platform system that pushes notifications to end users via a bot installed in Microsoft Teams.
 
-In this example, the IoT edge device(s) are local devices with sensors to detect conditions for cyclone activity. This alert system sends watch or warning messages in case of severe weather conditions - such as tornadoes.
+This project demonstrates an event-driven architecture beginning with Azure IoT edge devices connected to Azure IoT Hub that trigger Azure Functions and end in a notification system in Power Platform/Microsoft Teams.
 
 ![Tornado Watchdog Diagram](https://user-images.githubusercontent.com/1610195/162876670-98bb928e-a761-4294-9ede-7ed86c0e4a1b.png)
 
