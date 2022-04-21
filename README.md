@@ -42,6 +42,7 @@ To run this project, you will need the following Azure resources:
 - [Azure Event Hubs](https://azure.microsoft.com/en-us/services/event-hubs/)
 - [Azure IoT Edge](https://azure.microsoft.com/en-us/services/iot-edge/)
 - [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) or other container registry
+- [QnA Maker](https://www.qnamaker.ai/)
 
 4. Power Platform Resources
 
@@ -61,8 +62,6 @@ You will also need access to a Teams environment in the same Microsoft tenant fo
     - [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 
 - Visual Studio
-    > **Note**: Extensions can be installed either via links to the Visual Studio Marketplace
-    below or by searching for the extension by name from the Extensions menu in Visual Studio.
     - Install [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2019) first and then add the following extensions:
     - [Azure IoT Edge Tools](https://marketplace.visualstudio.com/items?itemName=vsc-iot.vs16iotedgetools) - provides Azure IoT Edge development tooling for Visual Studio
     - [Azure Function](https://marketplace.visualstudio.com/items?itemName=VisualStudioWebandAzureTools.AzureFunctionsandWebJobsTools) - skip if using Visual Studio 2019
