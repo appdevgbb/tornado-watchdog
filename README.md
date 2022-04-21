@@ -4,7 +4,7 @@ This project introduces a sample scenario based on the [Azure Iot Edge Watchdog 
 
 This project demonstrates an event-driven architecture beginning with Azure IoT edge devices connected to Azure IoT Hub that trigger Azure Functions and end in a notification system in Power Platform/Microsoft Teams.
 
-![Event-Driven Architecture Diagram](https://user-images.githubusercontent.com/1610195/164367153-88da118a-420c-4054-b497-764356991b0b.png)
+![Event-driven architecture diagram](https://user-images.githubusercontent.com/1610195/164374932-fd535cda-6c48-404c-80f9-5f05c32bf82d.png)
 
 ## Contents
 
