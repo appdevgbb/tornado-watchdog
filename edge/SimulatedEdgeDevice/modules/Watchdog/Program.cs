@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using Microsoft.Azure.Devices.Shared;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Azure.Devices.Client.Transport.Mqtt;
-using Google.Protobuf;
 using HeartbeatProto;
 using Newtonsoft.Json.Linq;
 using Serilog;
@@ -24,7 +23,6 @@ namespace HeartbeatModule
 
         enum MessageStatus {Sent, Acked};
         enum DeviceStatus {Online, Offline};
-        static int counter;
         static DeviceStatus connectivityStatus = DeviceStatus.Online;
         static Dictionary<Int64, MessageStatus> HbStatus = new Dictionary<Int64, MessageStatus>();
 
