@@ -15,7 +15,7 @@ namespace GWManagementFunctions
         /// This function is executed in response to the
         /// <see cref="EventHubTriggerAttribute">Event Hub Trigger</see>
         /// specified in the parameters. It takes the events from the trigger,
-        /// sends messages to TSI, and sends an ACK back to the IoT Hub.
+        /// sends messages to TSI.
         /// </summary>
         /// <param name="events">
         /// The inbound events from the Event Hub Trigger
