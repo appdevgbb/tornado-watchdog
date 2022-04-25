@@ -1,0 +1,8 @@
+<botcomponent schemaname="new_topic_9bc2aaf926fd465386e2a90a863210e9_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess">
+  <componenttype>0</componenttype>
+  <description>System Intent Default Customer Survey</description>
+  <iscustomizable>1</iscustomizable>
+  <name>End of Conversation</name>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

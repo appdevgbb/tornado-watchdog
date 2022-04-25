@@ -1,0 +1,154 @@
+{
+  "intents": [
+    {
+      "systemIntentTypes": [
+        "Fallback"
+      ],
+      "intentType": "System",
+      "dialogId": "new_topic_9bc2aaf926fd465386e2a90a863210e9_7620a288bb3e455984cace1ade5e259c_fallback",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_9bc2aaf926fd465386e2a90a863210e9_7620a288bb3e455984cace1ade5e259c_fallback",
+      "displayName": "Fallback",
+      "description": "System topic that includes content and behavior for when the bot can't determine the user's intent. Also includes the variable UnrecognizedTriggerPhrase to capture the unrecognized input.",
+      "createdTime": "2020-02-07T00:00:00Z",
+      "updatedTime": "2022-04-20T04:38:45.3045097Z",
+      "createdUserId": "user0",
+      "updatedUserId": "acbfa009-5c11-477c-968a-9244873b7f64"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "1d46d311-004b-4b61-98f8-24c254a73b96",
+      "dialogType": "System",
+      "messageNodes": [
+        {
+          "botMessageId": "c8f1c119-1471-4926-8c4e-d998fb2a925e",
+          "nodeType": "BotMessageNode",
+          "id": "eddc2285-a297-41b5-9886-03d0736c4d9a"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "329f966b-4f3a-401a-9b28-187d9e69e1e6",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{new_variable_9bc2aaf926fd465386e2a90a863210e9_340aefff448e492eac88d718fbdf56ac}"
+          },
+          "outputExpressionVariableIds": [
+            "9760e70f-5806-43db-ab7d-997f174c87e6"
+          ],
+          "id": "1d46d311-004b-4b61-98f8-24c254a73b96",
+          "defaultTargetNodeId": "eddc2285-a297-41b5-9886-03d0736c4d9a"
+        }
+      ],
+      "id": "new_topic_9bc2aaf926fd465386e2a90a863210e9_7620a288bb3e455984cace1ade5e259c_fallback",
+      "displayName": "Fallback",
+      "createdTime": "2020-02-07T00:00:00Z",
+      "updatedTime": "2022-04-20T04:38:45.3045097Z",
+      "createdUserId": "user0",
+      "updatedUserId": "acbfa009-5c11-477c-968a-9244873b7f64"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "{9760e70f-5806-43db-ab7d-997f174c87e6}"
+        }
+      },
+      "id": "c8f1c119-1471-4926-8c4e-d998fb2a925e",
+      "createdTime": "2022-04-19T02:15:47.322Z",
+      "updatedTime": "2022-04-19T02:15:47.322Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{new_variable_9bc2aaf926fd465386e2a90a863210e9_340aefff448e492eac88d718fbdf56ac}\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "133ac95e-86bf-ec11-983e-000d3a599b8f",
+        "title": "Generate answers using QnA Maker knowledge base from Power Virtual Agents",
+        "description": "Using Power Virtual Agents, call QnA Maker knowledge base to generate answers.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "InputText",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "FinalAnswer",
+            "id": "finalanswer",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-04-20T03:48:03Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-04-20T04:12:43Z",
+        "versionNumber": 984266
+      },
+      "id": "8a919312-449c-4039-9bf8-f88468753cef",
+      "displayName": "Generate answers using QnA Maker knowledge base from Power Virtual Agents",
+      "description": "Using Power Virtual Agents, call QnA Maker knowledge base to generate answers.",
+      "createdTime": "2022-04-20T04:38:28.377Z",
+      "updatedTime": "2022-04-20T04:38:28.377Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "customTypeId": "bc8acccb-e078-4124-9da1-32c1a6058e64",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "8a919312-449c-4039-9bf8-f88468753cef",
+      "isGlobal": false,
+      "id": "329f966b-4f3a-401a-9b28-187d9e69e1e6",
+      "displayName": "",
+      "createdTime": "2022-04-20T04:38:28.377Z",
+      "updatedTime": "2022-04-20T04:38:45.3045097Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "acbfa009-5c11-477c-968a-9244873b7f64"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('329f966b-4f3a-401a-9b28-187d9e69e1e6')['finalanswer']",
+      "isGlobal": false,
+      "id": "9760e70f-5806-43db-ab7d-997f174c87e6",
+      "displayName": "FinalAnswer",
+      "createdTime": "2022-04-20T04:38:28.378Z",
+      "updatedTime": "2022-04-20T04:38:45.3045097Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "acbfa009-5c11-477c-968a-9244873b7f64"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "bc8acccb-e078-4124-9da1-32c1a6058e64",
+      "displayName": "Response Json Type for Flow - Generate answers using QnA Maker knowledge base from Power Virtual Agents",
+      "createdTime": "2022-04-20T04:38:28.377Z",
+      "updatedTime": "2022-04-20T04:38:28.377Z"
+    }
+  ]
+}
