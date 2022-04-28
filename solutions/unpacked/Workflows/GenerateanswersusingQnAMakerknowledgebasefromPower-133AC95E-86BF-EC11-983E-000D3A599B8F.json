@@ -1,0 +1,153 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_cognitiveservicesqnamaker_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcognitiveservicesqnamaker_37381"
+        },
+        "api": {
+          "name": "shared_cognitiveservicesqnamaker"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "1bf887f6-6173-4e11-bed0-ab5ca3738034"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "InputText",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Incoming user question",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a62ed925-c2f4-4c84-9ed9-df51e6d6c391"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "finalanswer": "@variables('QnAAnswer')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "finalanswer": {
+                  "title": "FinalAnswer",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Generate_answer": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "56d567b8-514e-4c60-91c2-4624bdc6a337"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "QnAAnswer",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Generate_answer')?['body/answers']",
+          "actions": {
+            "Set_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "1b94e9fd-76f2-4779-b9be-545af73a1983"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "QnAAnswer",
+                "value": "@items('Apply_to_each')?['answer']"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d3a02782-39ca-41d2-b32e-4474116e6429"
+          },
+          "type": "Foreach"
+        },
+        "Generate_answer": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1143a70a-5684-4d7a-bd64-8640ef252106"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_cognitiveservicesqnamaker_1",
+              "operationId": "GenerateAnswer",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_cognitiveservicesqnamaker"
+            },
+            "parameters": {
+              "KnowledgeBaseId": "7da5c104-a9ec-4f66-af23-7b2497306d10",
+              "ServiceHost": "https://tornado-facts.azurewebsites.net/qnamaker",
+              "EndpointKey": "36158f7d-9d4e-444e-822c-08294efa5bd6",
+              "body/question": "@triggerBody()['text']",
+              "body/top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}
