@@ -29,6 +29,7 @@ jobs:
         user-name: ${{ secrets.MYUSERNAME }}
         password-secret: ${{ secrets.MYPASSWORD }}
         managed: true
+        solution-name: 'TornadoAlerts-prod'
         solution-output-file: 'solutions/ship/TornadoAlerts-prod.zip'
 
     - name: Publish Solution
