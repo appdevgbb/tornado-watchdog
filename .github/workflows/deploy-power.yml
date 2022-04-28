@@ -29,14 +29,14 @@ jobs:
         user-name: ${{ secrets.MYUSERNAME }}
         password-secret: ${{ secrets.MYPASSWORD }}
         managed: true
-        solution-name: 'TornadoAlerts-prod'
-        solution-output-file: 'solutions/ship/TornadoAlerts-prod.zip'
+        solution-name: 'TornadoAlerts'
+        solution-output-file: 'solutions/ship/TornadoAlerts_Managed.zip'
 
     - name: Publish Solution
       uses: microsoft/powerplatform-actions/publish-solution@v0
       with:
         environment-url: 'https://reddog.crm.dynamics.com'
-        solution-file: 'solutions/ship/TornadoAlerts-prod.zip'
+        solution-file: 'solutions/ship/TornadoAlerts_Managed.zip'
         user-name: ${{ secrets.MYUSERNAME }}
         password-secret: ${{ secrets.MYPASSWORD }}
         force-overwrite: true
