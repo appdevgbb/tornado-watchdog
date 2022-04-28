@@ -268,3 +268,4 @@ publish_output
 
 cloud/IotHubListening-js
 solutions/ship*
+solutions/*.zip
