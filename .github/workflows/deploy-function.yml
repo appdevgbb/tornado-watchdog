@@ -1,8 +1,8 @@
 name: Deploy DotNet project to function app with a Windows environment
 
 on:
-  push:
-    branches: [main]
+  #push:
+    #branches: [main]
   workflow_dispatch:
   release:
     types: [created]
