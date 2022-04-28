@@ -10,22 +10,33 @@ on:
   release:
     types: [created]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  convert-to-managed:
+    runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+    
+    - name: Export solution as managed
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: 'https://tornadoalley.crm.dynamics.com/'
+        user-name: ${{ secrets.MYUSERNAME }}
+        password-secret: ${{ secrets.MYPASSWORD }}
+        managed: true
+        solution-output-file: 'solutions/ship/TornadoAlerts-prod.zip'
 
-      - name: Publish Solution
-        uses: microsoft/powerplatform-actions/publish-solution@v0
-        with:
-          environment-url: 'https://reddog.crm.dynamics.com'
-          solution-file: 'solutions/TornadoAlerts.zip'
-          user-name: ${{ secrets.MYUSERNAME }}
-          password-secret: ${{ secrets.MYPASSWORD }}
-          force-overwrite: true
-          publish-changes: true
+    - name: Publish Solution
+      uses: microsoft/powerplatform-actions/publish-solution@v0
+      with:
+        environment-url: 'https://reddog.crm.dynamics.com'
+        solution-file: 'solutions/ship/TornadoAlerts-prod.zip'
+        user-name: ${{ secrets.MYUSERNAME }}
+        password-secret: ${{ secrets.MYPASSWORD }}
+        force-overwrite: true
+        publish-changes: true
