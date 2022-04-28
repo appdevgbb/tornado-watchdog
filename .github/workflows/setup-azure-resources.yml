@@ -1,6 +1,6 @@
 # Setup all of the resources for the Tornado Watchdog
 
-name: Create Azure Resources
+name: Setup Azure Resources
 
 # Controls when the workflow will run
 on:
