@@ -1,8 +1,0 @@
-<botcomponent schemaname="new_topic_9bc2aaf926fd465386e2a90a863210e9_7620a288bb3e455984cace1ade5e259c_fallback">
-  <componenttype>0</componenttype>
-  <description>System topic that includes content and behavior for when the bot can't determine the user's intent. Also includes the variable UnrecognizedTriggerPhrase to capture the unrecognized input.</description>
-  <iscustomizable>1</iscustomizable>
-  <name>Fallback</name>
-  <statecode>0</statecode>
-  <statuscode>1</statuscode>
-</botcomponent>

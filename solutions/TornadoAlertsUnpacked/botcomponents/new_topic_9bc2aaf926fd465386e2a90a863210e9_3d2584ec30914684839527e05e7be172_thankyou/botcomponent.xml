@@ -1,8 +1,0 @@
-<botcomponent schemaname="new_topic_9bc2aaf926fd465386e2a90a863210e9_3d2584ec30914684839527e05e7be172_thankyou">
-  <componenttype>0</componenttype>
-  <description>System Intent Thank You</description>
-  <iscustomizable>1</iscustomizable>
-  <name>Thank you</name>
-  <statecode>0</statecode>
-  <statuscode>1</statuscode>
-</botcomponent>
