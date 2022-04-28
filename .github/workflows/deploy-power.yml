@@ -19,34 +19,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Export Solution
-        uses: microsoft/powerplatform-actions/export-solution@v0
-        with:
-          environment-url: 'https://tornadoalley.crm.dynamics.com'
-          user-name: ${{ secrets.MYUSERNAME }}
-          password-secret: ${{ secrets.MYPASSWORD }}
-          solution-name: TornadoAlerts
-          solution-output-file: 'TornadoAlerts.zip'
-          working-directory: 'out'
-
-      - name: Unpack Solution
-        uses: microsoft/powerplatform-actions/unpack-solution@v0
-        with:
-          solution-file: 'TornadoAlerts.zip'
-          solution-folder: 'out/solutions/solution1'
-          solution-type: 'Unmanaged'
-          overwrite-files: true
 
       - name: Publish Solution
         uses: microsoft/powerplatform-actions/publish-solution@v0
         with:
           environment-url: 'https://reddog.crm.dynamics.com'
+          solution-file: 'solutions/TornadoAlerts.zip'
           user-name: ${{ secrets.MYUSERNAME }}
           password-secret: ${{ secrets.MYPASSWORD }}
-
-      - name: Prepare solution changes for check-in into source control
-        uses: microsoft/powerplatform-actions/branch-solution@v0
-        with:
-          solution-folder: 'out/solutions/solution1'
-          solution-target-folder: '/solutions/production'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          force-overwrite: true
+          publish-changes: true
