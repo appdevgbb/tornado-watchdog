@@ -1,0 +1,23 @@
+{
+  "contextVariables": [
+    {
+      "contextVariableType": "System",
+      "systemVariableTypes": [
+        "UnrecognizedTriggerPhrase"
+      ],
+      "systemType": "String",
+      "initializerType": "UserTriggerPhrase",
+      "scope": "Session",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "isGlobal": true,
+      "id": "new_variable_9bc2aaf926fd465386e2a90a863210e9_340aefff448e492eac88d718fbdf56ac",
+      "displayName": "UnrecognizedTriggerPhrase",
+      "createdTime": "2020-02-07T00:00:00Z",
+      "updatedTime": "2020-02-07T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ]
+}
