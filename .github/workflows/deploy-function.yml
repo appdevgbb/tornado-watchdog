@@ -1,12 +1,16 @@
 name: Deploy DotNet project to function app with a Windows environment
 
 on:
-  [push]
+  push:
+    branches: [main]
+  workflow_dispatch:
+  release:
+    types: [created]
 
 env:
-  AZURE_FUNCTIONAPP_NAME: iot-watchdog-func  
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'cloud/IoTHubListener'    
-  DOTNET_VERSION: '6.0'              
+  AZURE_FUNCTIONAPP_NAME: iot-watchdog-func
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'cloud/IoTHubListener'
+  DOTNET_VERSION: '6.0'
 
 jobs:
   build-and-deploy:
