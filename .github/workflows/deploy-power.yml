@@ -23,7 +23,7 @@ jobs:
         uses: microsoft/powerplatform-actions/export-solution@v0
         with:
           environment-url: 'https://tornadoalley.crm.dynamics.com'
-          user-name: 'admin@CRM969490.onmicrosoft.com'
+          user-name: ${{ secrets.MYUSERNAME }}
           password-secret: ${{ secrets.MYPASSWORD }}
           solution-name: TornadoAlerts
           solution-output-file: 'TornadoAlerts.zip'
@@ -41,7 +41,7 @@ jobs:
         uses: microsoft/powerplatform-actions/publish-solution@v0
         with:
           environment-url: 'https://reddog.crm.dynamics.com'
-          user-name: 'admin@CRM969490.onmicrosoft.com'
+          user-name: ${{ secrets.MYUSERNAME }}
           password-secret: ${{ secrets.MYPASSWORD }}
 
       - name: Prepare solution changes for check-in into source control
