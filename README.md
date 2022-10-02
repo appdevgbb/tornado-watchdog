@@ -1,10 +1,14 @@
 # Tornado Watchdog Severe Weather Alerting System
 
-This project introduces a sample scenario based on the [Azure Iot Edge Watchdog Sample](https://github.com/Azure-Samples/iot-edge-watchdog) from [these open-source contributors](https://github.com/Azure-Samples/iot-edge-watchdog/graphs/contributors). In this example, the Iot Edge device(s) are simulated sensors that can detect cyclone activity based on environmental factors. The devices send "watch" or "warning" messages in the case of severe weather conditions which are routed through a notification system in Microsoft Azure. These events may also trigger a workflow in a companion Power Platform system that pushes notifications to end users via a bot installed in Microsoft Teams.
+This project introduces a sample scenario based on the [Azure Iot Edge Watchdog Sample](https://github.com/Azure-Samples/iot-edge-watchdog) from [these open-source contributors](https://github.com/Azure-Samples/iot-edge-watchdog/graphs/contributors). 
 
-This project demonstrates an event-driven architecture beginning with Azure IoT edge devices connected to Azure IoT Hub that trigger Azure Functions and end in a notification system in Power Platform/Microsoft Teams.
+In this example, the Iot Edge device(s) are simulated sensors that can detect cyclone activity based on environmental factors. The devices send "watch" or "warning" messages in the case of severe weather conditions which are routed through a notification system in Microsoft Azure. These events may also trigger a workflow in a companion [Power Platform](https://powerplatform.microsoft.com/en-us/) system that pushes notifications to end users via a [Power Virtual Agent ](https://powervirtualagents.microsoft.com) bot installed in Microsoft Teams.
 
-![Event-driven architecture diagram](https://user-images.githubusercontent.com/1610195/164374932-fd535cda-6c48-404c-80f9-5f05c32bf82d.png)
+In addition to receiving notifications via the bot, they can also interact with the bot to ask common questions about severe weather and cyclone activity. This Q&A capability is provided by [Question Answering](https://azure.microsoft.com/en-us/products/cognitive-services/question-answering/#overview) in Microsoft Azure.
+
+This project demonstrates an event-driven architecture beginning with Azure IoT edge devices connected to Azure IoT Hub that trigger Azure Functions and end in a notification system in Power Platform and Microsoft Teams.
+
+![Event-driven architecture diagram](https://user-images.githubusercontent.com/1610195/193479464-b5b8361a-f154-4787-9bae-abaf28b5770d.png)
 
 ## Contents
 
@@ -42,7 +46,7 @@ To run this project, you will need the following Azure resources:
 - [Azure Event Hubs](https://azure.microsoft.com/en-us/services/event-hubs/)
 - [Azure IoT Edge](https://azure.microsoft.com/en-us/services/iot-edge/)
 - [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) or other container registry
-- [QnA Maker](https://www.qnamaker.ai/)
+- [Question Answering](https://azure.microsoft.com/en-us/products/cognitive-services/question-answering/#overview)
 
 4. Power Platform Resources
 
