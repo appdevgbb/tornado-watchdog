@@ -12,21 +12,23 @@ This project demonstrates an event-driven architecture beginning with Azure IoT 
 
 ## Contents
 
-This project has four parts:
+**IoT Edge Demo adapted from [IoT Edge Watchdog](https://github.com/Azure-Samples/iot-edge-watchdog)**
 
-- **edge/SimulatedEdgeDevice/modules**: Deploy this module to the Azure IoT Edge devices and it will
+- *edge/SimulatedEdgeDevice/modules*: Deploy this module to the Azure IoT Edge devices and it will
 send messages to the corresponding IoT Hub.
 
-- **cloud/IoTHubListener**: This is the Azure Function trigged by the Event Hub compatible endpoint for IoT Hub. Deploy this function to Azure and it will pick up the messages from the Azure IoT Edge Module as they enter the IoT Hub and then log and process them.
+- *cloud/IoTHubListener*: This is the Azure Function trigged by the Event Hub compatible endpoint for IoT Hub. Deploy this function to Azure and it will pick up the messages from the Azure IoT Edge Module as they enter the IoT Hub and then log and process them.
 
-- **shared/HeartbeatMessage**: Shared object model (protobuf) between cloud and edge, to ease serialization across applications. This project can be modified to produce a Nuget package that can be consumed as a package reference, rather than as a linked/dependent project.
+- *shared/HeartbeatMessage*: Shared object model (protobuf) between cloud and edge, to ease serialization across applications. This project can be modified to produce a Nuget package that can be consumed as a package reference, rather than as a linked/dependent project.
 
-- **solutions/**: This folder contains the solution files for the Power Platform piece of this project:
+**Power Platform Archive** 
+
+- *solutions/*: This folder contains the solution files for the Power Platform piece of this project:
     - Power Apps Canvas App for displaying historical events
     - Power Automate Flow for capturing events from the IoT architecture in Azure
     - Virtual Agent for connecting to the tornado knowledge base and accepting event notifications
 
-## Get Started
+## Get Started - Prereqs
 
 1. Language SDKs
 
@@ -36,8 +38,7 @@ Functions Core Tools.
 
 2. Docker
 
-[Docker Community Edition](https://docs.docker.com/install/) - required for Azure IoT Edge
-module development, deployment and debugging. Docker CE is free, but may require registration with Docker account to download.
+- [Docker Community Edition](https://docs.docker.com/install/)
 
 3. Azure Resources
 
@@ -55,41 +56,29 @@ sign up for a 30-day subscription [here](https://go.microsoft.com/fwlink/?LinkId
 
 You will also need access to a Teams environment in the same Microsoft tenant for interacting with the bot and receiving event notifications.
 
-4. IDE and extensions
-- Visual Studio Code
+4. Azure Functions Core Tools
 
-    Install [Visual Studio Code](https://code.visualstudio.com/) and add the following extensions:
-
-    - [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) (only
-    required for C# version of sample) - provides C# syntax checking, build and debug support
-    - [Azure IoT Tools](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) - provides Azure IoT Edge development tooling
-    - [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
-
-- Visual Studio
-    - Install [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2019) first and then add the following extensions:
-    - [Azure IoT Edge Tools](https://marketplace.visualstudio.com/items?itemName=vsc-iot.vs16iotedgetools) - provides Azure IoT Edge development tooling for Visual Studio
-    - [Azure Function](https://marketplace.visualstudio.com/items?itemName=VisualStudioWebandAzureTools.AzureFunctionsandWebJobsTools) - skip if using Visual Studio 2019
-
-5. Azure Functions Core Tools
-
- [Azure Functions Core Tools](https://github.com/Microsoft/vscode-azurefunctions/blob/master/README.md) is a version of the Azure Functions runtime for local development machine. It also provides commands to create functions, connect to Azure, and deploy Azure Function projects.  After verifying Node.js (LTS) is installed and in the path, install **[azure-functions-core-tools](https://www.npmjs.com/package/azure-functions-core-tools)** with npm:
+Install [Azure Functions Core Tools](https://github.com/Microsoft/vscode-azurefunctions/blob/master/README.md)
 
 ``` bash
     npm install -g azure-functions-core-tools
 ```
 
-### Azure IoT Edge Module (Simulated Edge Device)
+**[The following instructions adapted from base iot-edge-watchdog repository](https://github.com/Azure-Samples/iot-edge-watchdog#azure-iot-edge-module-simulated-edge-device)**
 
-In the provided `env` file (remove the `.temp` extension) there are many configurable variables.  At a minimum, you will need to fill in the container registry settings.
-If you are using `localhost` are your registry, then you can leave username and password blank.
+### Azure IoT Edge Module 
+
+In the provided `env` file (remove the `.temp` extension) there are many configurable variables.
+
+**If you are using `localhost` are your registry, then you can leave username and password blank**
 
 ### Iot Hub Listener
 
-The **IoT Hub Listener** is an Azure Function that provides the intermediate logging and processing of the IoT messages. The Azure Function requires an input Event Hub, such as IoT Hub's Event Hub compatible endpoint, and an output Event Hub. The output Event Hub can be mapped to Azure Data Lake storage for persistence of messages.
+This is an Azure Function that provides the processing of the IoT messages and pushes events to the destination Event Hub
 
 ### Environment settings and use/development
 
-There are four settings to configure for the IoT HuB listener. These are in the `local.settings.json.temp` file.  After changing the settings, remove the `.temp` extension.
+There four settings to configure for the IoT HuB listener in the `local.settings.json.temp` file:
 
 ```
     "IoTHubAckConnectionString":"",
@@ -99,10 +88,7 @@ There are four settings to configure for the IoT HuB listener. These are in the 
     "FUNCTIONS_WORKER_RUNTIME": "dotnet"
 ```
 
-First set the connection string for the Azure IoT Hub and then connection string for the Azure Event Hubs compatible endpoint. This second string is what will trigger and provide event data to the Azure Function. The Ingest Event Hub Endpoint is where the processed data gets sent and which enables the Azure Data Lake or another service
-to access the processed message.  It also serves as the trigger for the Power Automate workflow in Power Platform. Finally, AzureWebJobsStorage is a required backing store for Azure Functions.  This can be a local Azure Storage Emulator with the setting `UseDevelopmentStorage=true`.
-
-### HeartMessage
-
-The heartbeat message is [protocol buffer](https://developers.google.com/protocol-buffers/).  Simply define it in the `.proto`
-file and include the `csproj` file.  The underlying C# will be generated for you.
+- **IoTHubAckConnectionString** - connection string for the Azure IoT Hub
+- **EventHubEgressConnectionString** - Azure Event Hubs compatible endpoint for IoT Hub
+- **EventHubIngestConnectionString** - Azure Event Hubs where the processed data is sent (serves as trigger fro the Power Automate workflow in Power Platform)
+- **AzureWebJobsStorage** - backing storage for Azure Functions
