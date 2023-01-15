@@ -40,4 +40,11 @@ resource "azurerm_iothub_certificate" "root_ca" {
   is_verified         = true
 
   certificate_content = tls_self_signed_cert.root-ca.cert_pem
+
+  lifecycle {
+    ignore_changes = [
+      # For some reason it keeps trying to change/modify this value....???
+      certificate_content    
+    ]
+  }
 }
