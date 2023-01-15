@@ -275,6 +275,7 @@ solutions/*.zip
 .terraform*
 tfplan
 *.tfstate
+*.tfstate.backup
 
 # Demo Certs
 certs/
