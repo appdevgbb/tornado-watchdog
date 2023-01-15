@@ -15,3 +15,7 @@ variable "resource_group" {
 variable "iot_dps_name" {
   type = string
 }
+
+variable "subnet_id" {
+  type = string
+}
