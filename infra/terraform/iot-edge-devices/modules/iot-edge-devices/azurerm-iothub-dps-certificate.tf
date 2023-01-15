@@ -1,5 +1,5 @@
 resource "azurerm_iothub_dps_certificate" "example" {
-  name                = "example"
+  name                = local.device_id
   resource_group_name = var.resource_group.name
   iot_dps_name        = var.iot_dps_name
 
