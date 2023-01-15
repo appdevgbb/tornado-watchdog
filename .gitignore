@@ -269,3 +269,12 @@ publish_output
 cloud/IotHubListening-js
 solutions/ship*
 solutions/*.zip
+
+# Terraform
+.terraform/
+.terraform*
+tfplan
+*.tfstate
+
+# Demo Certs
+certs/
