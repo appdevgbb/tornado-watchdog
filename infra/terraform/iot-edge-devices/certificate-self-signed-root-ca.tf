@@ -31,3 +31,13 @@ resource "local_file" "rootkey" {
   content = tls_self_signed_cert.root-ca.private_key_pem
   filename = "certs/iot-hub/rootca/rootkey.pem"
 }
+
+# For Demo Only!!! You should verify the certificate in Prod
+resource "azurerm_iothub_certificate" "root_ca" {
+  name                = "rootca"
+  resource_group_name = azurerm_resource_group.default.name
+  iothub_name         = azurerm_iothub.iothub.name
+  is_verified         = true
+
+  certificate_content = tls_self_signed_cert.root-ca.cert_pem
+}
