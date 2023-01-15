@@ -12,4 +12,6 @@ module "iot-edge-devices" {
 
     resource_group = azurerm_resource_group.default
     iot_dps_name = azurerm_iothub_dps.dps.name
+
+    subnet_id = azurerm_subnet.iot-edge-devices.id
 }
