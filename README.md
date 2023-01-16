@@ -48,6 +48,7 @@ To run this project, you will need the following Azure resources:
 - [Azure IoT Edge](https://azure.microsoft.com/en-us/services/iot-edge/)
 - [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) or other container registry
 - [Question Answering](https://azure.microsoft.com/en-us/products/cognitive-services/question-answering/#overview)
+    - Note: You must create your first Face, Text Analytics, or Computer Vision resources from the Azure portal to review and acknowledge the terms and conditions. In Azure Portal, the checkbox to accept terms and conditions is only displayed when a US region is selected. More information on Prerequisites.
 
 4. Power Platform Resources
 
