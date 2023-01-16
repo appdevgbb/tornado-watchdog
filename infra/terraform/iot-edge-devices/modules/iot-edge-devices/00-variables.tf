@@ -1,6 +1,5 @@
-variable "device_id" {
+variable "prefix" {
   type = string
-  default = ""
 }
 
 variable "ca_private_key_pem" {

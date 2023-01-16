@@ -18,6 +18,9 @@ provider "azurerm" {
 }
 
 resource "random_pet" "suffix" {
-  prefix = var.prefix
   length = 1
+}
+
+locals {
+  name = "${var.prefix}${random_pet.suffix.id}"
 }

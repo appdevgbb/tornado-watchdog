@@ -1,6 +1,6 @@
 
 resource "azurerm_network_security_group" "iot-edge-devices" {
-  name                = "iot-edge-devices-nsg"
+  name                = "${azurerm_subnet.iot-edge-devices.name}-subnet-nsg"
   location            = azurerm_resource_group.default.location
   resource_group_name = azurerm_resource_group.default.name
 

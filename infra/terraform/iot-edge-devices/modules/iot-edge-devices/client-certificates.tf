@@ -9,7 +9,7 @@ resource "tls_cert_request" "client-csr" {
   private_key_pem = tls_private_key.client-key.private_key_pem
 
   subject {
-    common_name  = "${local.device_id}"
+    common_name  = local.device_id
     organization = "App Dev Azure Global Black Belt Team"
   }
 }

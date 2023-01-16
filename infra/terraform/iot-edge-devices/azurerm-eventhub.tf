@@ -1,6 +1,6 @@
 
 resource "azurerm_eventhub_namespace" "namespace" {
-  name                = random_pet.suffix.id
+  name                = local.name
   resource_group_name = azurerm_resource_group.default.name
   location            = azurerm_resource_group.default.location
   sku                 = "Basic"

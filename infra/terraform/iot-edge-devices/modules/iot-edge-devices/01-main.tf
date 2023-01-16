@@ -17,5 +17,5 @@ resource random_string "device_id" {
 }
 
 locals {
-  device_id = var.device_id != "" ? var.device_id : random_string.device_id.id
+  device_id = "${var.prefix}${random_string.device_id.id}"
 }

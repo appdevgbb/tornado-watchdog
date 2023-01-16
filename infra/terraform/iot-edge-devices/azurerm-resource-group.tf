@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "default" {
-  name = "${var.prefix}tornado-iotedge"
+  name = "${local.name}-tornado-iotedge"
   location = var.location
 }
