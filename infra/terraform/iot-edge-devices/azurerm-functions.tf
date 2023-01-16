@@ -16,4 +16,11 @@ resource "azurerm_linux_function_app" "listener" {
   service_plan_id            = azurerm_service_plan.listener.id
 
   site_config {}
+
+  app_settings = {
+    "IoTHubAckConnectionString" = azurerm_iothub_shared_access_policy.hub_access_policy.primary_connection_string
+    "EventHubEgressConnectionString" = azurerm_iothub_endpoint_eventhub.default.connection_string
+    "EventHubIngestConnectionString" = azurerm_iothub_endpoint_eventhub.default.connection_string
+    "FUNCTIONS_WORKER_RUNTIME" = "dotnet"
+  }
 }
