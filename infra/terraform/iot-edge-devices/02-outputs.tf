@@ -1,5 +1,5 @@
 output "azurerm_iothub_name" {
-  value = azurerm_iothub.iothub.name
+  value = azurerm_iothub.default.name
 }
 
 output "azurerm_iothub_dps_name" {

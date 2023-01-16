@@ -36,7 +36,7 @@ resource "local_file" "rootkey" {
 resource "azurerm_iothub_certificate" "root_ca" {
   name                = "rootca"
   resource_group_name = azurerm_resource_group.default.name
-  iothub_name         = azurerm_iothub.iothub.name
+  iothub_name         = azurerm_iothub.default.name
   is_verified         = true
 
   certificate_content = tls_self_signed_cert.root-ca.cert_pem
