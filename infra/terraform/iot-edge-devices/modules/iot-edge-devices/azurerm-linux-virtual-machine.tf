@@ -17,6 +17,11 @@ resource "azurerm_linux_virtual_machine" "example" {
   location            = var.resource_group.location
   size                = "Standard_D2s_v3"
   admin_username      = "adminuser"
+
+  identity {
+    type = "SystemAssigned"
+  }
+
   network_interface_ids = [
     azurerm_network_interface.example.id,
   ]
